@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MCQ Proofreader</title>
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] },
+        options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"] }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="command-bar" aria-label="MCQ proofreader controls">
+        <div class="brand-block">
+          <div class="brand-mark">MCQ</div>
+          <div>
+            <p class="eyebrow">Proof Desk</p>
+            <h1>MCQ Extractor & Spell Review</h1>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label class="file-picker">
+            <input id="fileInput" type="file" accept=".docx" />
+            <span><i data-lucide="file-up"></i> DOCX Upload</span>
+          </label>
+
+          <select id="languageSelect" aria-label="Spell check language">
+            <option value="auto">Bangla + English</option>
+            <option value="bn">Bangla</option>
+            <option value="en-US">English US</option>
+            <option value="en-GB">English UK</option>
+          </select>
+
+          <button id="spellButton" class="primary-action" type="button" disabled>
+            <i data-lucide="spell-check"></i>
+            Check
+          </button>
+        </div>
+      </section>
+
+      <section class="review-dashboard" aria-label="Review summary">
+        <label id="dropZone" class="drop-zone">
+          <input id="dropInputMirror" type="file" accept=".docx" tabindex="-1" aria-hidden="true" />
+          <span class="drop-icon"><i data-lucide="upload-cloud"></i></span>
+          <span class="drop-title">DOCX Drop Zone</span>
+          <span id="fileName" class="drop-meta">No file selected</span>
+        </label>
+
+        <div class="metric-strip">
+          <div class="metric">
+            <span class="metric-label">Questions</span>
+            <strong id="metricTotal">০</strong>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Repeats</span>
+            <strong id="metricDuplicates">০</strong>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Spell Issues</span>
+            <strong id="metricSpell">০</strong>
+          </div>
+        </div>
+
+        <div id="status" class="status-line">Upload a table-formatted .docx file.</div>
+      </section>
+
+      <div id="summary" class="summary" hidden></div>
+      <div id="warnings" class="warnings" hidden></div>
+      <section id="cards" class="cards" aria-live="polite"></section>
+
+      <footer class="site-footer">
+        Developed by 
+        <a href="http://mazharul.dev.cv/" target="_blank" rel="noopener noreferrer">Mazharul</a>
+      </footer>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
